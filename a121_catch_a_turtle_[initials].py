@@ -9,13 +9,14 @@ import random as rand
 
 counter =  trtl.Turtle()
 #-----game configuration----
+sizes = [0.5, 1, 2, 3, 4, 5]
 t.shape("turtle")
 t.shapesize(1.5)
 t.fillcolor("pink")
 t.pencolor("pink")
 score = 0
 
-colors = ['blue', 'pink', 'green', 'white', 'black', 'orange']
+
 #-----initialize turtle-----
 score_writer.penup()
 score_writer.goto(190,190)
@@ -29,11 +30,9 @@ font_setup = ("Arial", 20, "normal")
 timer = 30
 counter_interval = 1000   #1000 represents 1 second
 timer_up = False
-#-----game functions--------
-def change_color():
-	rand.choice(colors)
-	t.stamp(rand.choice)
 
+
+#-----game functions--------
 def countdown():
   global timer, timer_up
   counter.clear()
@@ -50,6 +49,7 @@ def change_position():
 	new_xpos = rand.randint(-200,200)
 	new_ypos = rand.randint(-200,200)
 	t.goto(new_xpos,new_ypos)
+	t.shapesize(rand.choice(sizes))
 	
 def update_score():
 	global score
@@ -62,11 +62,8 @@ def t_clicked(x,y):
 	if timer_up == False:
 		update_score()
 		change_position()
-		change_color()
 	else:
 		t.hideturtle()
-	
-
 
 t.onclick(t_clicked)
 #-----events----------------
